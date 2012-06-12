@@ -1,0 +1,16 @@
+C:\Users\Adam\documents\visual studio 2010\Projects\MW3 Music Tool international\MW3 Music Tool international\bin\Debug\MW3 Music Tool international.exe
+C:\Users\Adam\documents\visual studio 2010\Projects\MW3 Music Tool international\MW3 Music Tool international\bin\Debug\MW3 Music Tool international.pdb
+C:\Users\Adam\documents\visual studio 2010\Projects\MW3 Music Tool international\MW3 Music Tool international\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Adam\documents\visual studio 2010\Projects\MW3 Music Tool international\MW3 Music Tool international\obj\x86\Debug\WindowsFormsApplication1.Form1.resources
+C:\Users\Adam\documents\visual studio 2010\Projects\MW3 Music Tool international\MW3 Music Tool international\obj\x86\Debug\WindowsFormsApplication1.Form2.resources
+C:\Users\Adam\documents\visual studio 2010\Projects\MW3 Music Tool international\MW3 Music Tool international\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Adam\documents\visual studio 2010\Projects\MW3 Music Tool international\MW3 Music Tool international\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Adam\documents\visual studio 2010\Projects\MW3 Music Tool international\MW3 Music Tool international\obj\x86\Debug\MW3 Music Tool international.exe
+C:\Users\Adam\documents\visual studio 2010\Projects\MW3 Music Tool international\MW3 Music Tool international\obj\x86\Debug\MW3 Music Tool international.pdb
+C:\Users\Adam\documents\visual studio 2010\Projects\MW3 Music Tool international\MW3 Music Tool international\obj\x86\Debug\WindowsFormsApplication1.Form3.resources
+C:\Users\Adam\documents\visual studio 2010\Projects\MW3 Music Tool international\MW3 Music Tool international\bin\Debug\MW3 Music Tool international.exe.manifest
+C:\Users\Adam\documents\visual studio 2010\Projects\MW3 Music Tool international\MW3 Music Tool international\bin\Debug\MW3 Music Tool international.application
+C:\Users\Adam\documents\visual studio 2010\Projects\MW3 Music Tool international\MW3 Music Tool international\obj\x86\Debug\mw3musiktool.Properties.Resources.resources
+C:\Users\Adam\documents\visual studio 2010\Projects\MW3 Music Tool international\MW3 Music Tool international\obj\x86\Debug\MW3 Music Tool international.TrustInfo.xml
+C:\Users\Adam\documents\visual studio 2010\Projects\MW3 Music Tool international\MW3 Music Tool international\obj\x86\Debug\MW3 Music Tool international.exe.manifest
+C:\Users\Adam\documents\visual studio 2010\Projects\MW3 Music Tool international\MW3 Music Tool international\obj\x86\Debug\MW3 Music Tool international.application
