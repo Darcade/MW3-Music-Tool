@@ -21,6 +21,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace WindowsFormsApplication1
 {
@@ -45,6 +46,24 @@ namespace WindowsFormsApplication1
             this.Hide();
             frmdeutsch.ShowDialog();
             this.Close();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                File.Delete(Application.UserAppDataPath + @"\MW3-Tool.txt");
+                MessageBox.Show("Config deleted! Please restart the Application!");
+            }
+            catch
+            {
+                MessageBox.Show("Config NOT deleted!");
+            }
         }
     }
 }

@@ -57,7 +57,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 79);
+            this.button1.Location = new System.Drawing.Point(12, 123);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(105, 46);
             this.button1.TabIndex = 2;
@@ -67,7 +67,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(131, 79);
+            this.button2.Location = new System.Drawing.Point(131, 123);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(105, 46);
             this.button2.TabIndex = 3;
@@ -78,7 +78,7 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(12, 140);
+            this.linkLabel1.Location = new System.Drawing.Point(12, 184);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(71, 13);
             this.linkLabel1.TabIndex = 4;
@@ -89,7 +89,7 @@
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(173, 140);
+            this.linkLabel2.Location = new System.Drawing.Point(173, 184);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(63, 13);
             this.linkLabel2.TabIndex = 5;
@@ -105,7 +105,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(248, 162);
+            this.ClientSize = new System.Drawing.Size(248, 206);
             this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.button2);
@@ -114,7 +114,7 @@
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form2";
-            this.Text = "MW3 Music Tool v1.04";
+            this.Text = "MW3 Music Tool v1.03";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -34,89 +34,258 @@ namespace WindowsFormsApplication1
 
         private void Form3_Load(object sender, EventArgs e)
         {
-            //bool musikstatus = false;
-            //true bedeutet Musik ist an false sie ist aus
+            string[] lines = { "32bit", "notdefined" };
+            string[] lines2 = { "64bit", "notdefined" };
+            string line0 = "0", line1 = "1";
 
-            bool systembitstatus = false;
-            //false bedeutet System ist 32 bit true es ist 64 bit
 
-            if (File.Exists(@"C:\Program Files\Steam\SteamApps\common\call of duty modern warfare 3\miles\milesEQ.flt"))
-            //Es wird gekuckt ,ob das Betriebssystem 32 bit ist
+            if (File.Exists(Application.UserAppDataPath + @"\MW3-Tool.txt"))
             {
-                systembitstatus = false;
+                // Read the file
+                System.IO.StreamReader toolfile =
+                new System.IO.StreamReader(Application.UserAppDataPath + @"\MW3-Tool.txt");
+                line0 = toolfile.ReadLine();
+                line1 = toolfile.ReadLine();
+                toolfile.Close();
+            }
+            else
+            {
+                FileInfo FI = new FileInfo(Application.UserAppDataPath + @"\MW3-Tool.txt");
+                FileStream FS = FI.Create();
+                FS.Close();
+                string[] lines0 = { "notdefined", "notdefined" };
+                System.IO.File.WriteAllLines(Application.UserAppDataPath + @"\MW3-Tool.txt", lines0);
+            }
+            if (File.Exists(@"C:\Program Files\Steam\SteamApps\common\call of duty modern warfare 3\miles\milesEQ.flt"))
+            {
+                System.IO.File.WriteAllLines(Application.UserAppDataPath + @"\MW3-Tool.txt", lines);
             }
             else
             {
                 if (File.Exists(@"C:\Program Files (x86)\Steam\SteamApps\common\call of duty modern warfare 3\miles\milesEQ.flt"))
                 {
-                    systembitstatus = true;
 
+                    System.IO.File.WriteAllLines(Application.UserAppDataPath + @"\MW3-Tool.txt", lines2);
+                }
+
+                else
+                {
+                    if (line0 == "notdefined")
+                    {
+                        System.Windows.Forms.FolderBrowserDialog objDialog = new FolderBrowserDialog();
+                        objDialog.Description = "Wähle den CoD MW3 Ordner aus!";
+                        objDialog.SelectedPath = @"C:\";
+                        DialogResult objResult = objDialog.ShowDialog(this);
+                        if (objResult == DialogResult.OK)
+                        {
+                            string mw3path = objDialog.SelectedPath;
+                            string[] lines3 = { "alreadydefined", mw3path };
+                            System.IO.File.WriteAllLines(Application.UserAppDataPath + @"\MW3-Tool.txt", lines3);
+                            if (File.Exists(mw3path + @"\miles\milesEQ.flt"))
+                            {
+                                if (File.Exists(mw3path + @"\miles\mssmp3.asi"))
+                                {
+                                    if (File.Exists(mw3path + @"\miles\mssmp3.bak"))
+                                    {
+                                        File.Delete(mw3path + @"\miles\mssmp3.bak");
+                                        label2.Text = "Die Musik ist angeschaltet!";
+                                        button1.Enabled = false;
+                                        button2.Enabled = true;
+                                    }
+                                    else
+                                    {
+                                        label2.Text = "Die Musik ist angeschaltet!";
+                                        button1.Enabled = false;
+                                        button2.Enabled = true;
+                                    }
+                                }
+                                else
+                                {
+                                    if (File.Exists(mw3path + @"\miles\mssmp3.bak"))
+                                    {
+                                        label2.Text = "Die Musik ist angeschaltet!";
+                                        button1.Enabled = true;
+                                        button2.Enabled = false;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Error #001");
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error #002 'no milesEQ.flt in there'");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Abgebrochen!");
+                            System.Windows.Forms.Application.Exit();
+                        }
+                    }
+                    if (line1 == "alreadydefined")
+                    {
+                        string line2 = "0", line3 = "1";
+                        System.IO.StreamReader toolfile2 =
+                            new System.IO.StreamReader(Application.UserAppDataPath + @"\MW3-Tool.txt");
+                        line2 = toolfile2.ReadLine();
+                        line3 = toolfile2.ReadLine();
+                        toolfile2.Close();
+
+                        if (File.Exists(line3 + @"\miles\milesEQ.flt"))
+                        {
+                            if (File.Exists(line3 + @"\miles\mssmp3.asi"))
+                            {
+                                if (File.Exists(line3 + @"\miles\mssmp3.bak"))
+                                {
+                                    File.Delete(line3 + @"\miles\mssmp3.bak");
+                                    label2.Text = "Die Musik ist angeschaltet!";
+                                    button1.Enabled = false;
+                                    button2.Enabled = true;
+                                }
+                                else
+                                {
+                                    label2.Text = "Die Musik ist angeschaltet!";
+                                    button1.Enabled = false;
+                                    button2.Enabled = true;
+                                }
+                            }
+                            else
+                            {
+                                if (File.Exists(line3 + @"\miles\mssmp3.bak"))
+                                {
+                                    label2.Text = "Die Musik ist angeschaltet!";
+                                    button1.Enabled = true;
+                                    button2.Enabled = false;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Error #003");
+                                }
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error #004");
+                        }
+                    }
                 }
             }
-            if (systembitstatus == false)
+            // Read the file
+            string line4 = "0", line5 = "1";
+            System.IO.StreamReader toolfile3 =
+                new System.IO.StreamReader(Application.UserAppDataPath + @"\MW3-Tool.txt");
+            line4 = toolfile3.ReadLine();
+            line5 = toolfile3.ReadLine();
+            toolfile3.Close();
+
+            if (line4 == "32bit")
             {
                 try
                 {
                     if (File.Exists(@"C:\Program Files\Steam\SteamApps\common\call of duty modern warfare 3\miles\mssmp3.asi"))
                     {
-                        label2.Text = "Die Musik ist aktuell an!";
-                        button1.Enabled = false;
-                        button2.Enabled = true;
+                        if (File.Exists(@"C:\Program Files\Steam\SteamApps\common\call of duty modern warfare 3\miles\mssmp3.bak"))
+                        {
+                            label2.Text = "Die Musik ist angeschaltet!";
+                            button1.Enabled = false;
+                            button2.Enabled = true;
+                        }
+                        else
+                        {
+                            label2.Text = "Die Musik ist angeschaltet!";
+                            button1.Enabled = false;
+                            button2.Enabled = true;
+                        }
                     }
                     else
                     {
-                        label2.Text = "Die Musik ist aktuell aus!";
+                        label2.Text = "Die Musik ist angeschaltet!";
                         button1.Enabled = true;
                         button2.Enabled = false;
                     }
                 }
                 catch
                 {
-                    label2.Text = "Error #001";
+                    MessageBox.Show("Error #005");
                 }
             }
             else
             {
-                try
+                if (line4 == "64bit")
                 {
-                    if (File.Exists(@"C:\Program Files (x86)\Steam\SteamApps\common\call of duty modern warfare 3\miles\mssmp3.asi"))
+
+
+                    try
                     {
-                        label2.Text = "Die Musik ist aktuell an!";
-                        button1.Enabled = false;
-                        button2.Enabled = true;
+                        if (File.Exists(@"C:\Program Files (x86)\Steam\SteamApps\common\call of duty modern warfare 3\miles\mssmp3.asi"))
+                        {
+                            if (File.Exists(@"C:\Program Files (x86)\Steam\SteamApps\common\call of duty modern warfare 3\miles\mssmp3.bak"))
+                            {
+                                label2.Text = "Die Musik ist angeschaltet!";
+                                button1.Enabled = false;
+                                button2.Enabled = true;
+                            }
+                            else
+                            {
+                                label2.Text = "Die Musik ist angeschaltet!";
+                                button1.Enabled = false;
+                                button2.Enabled = true;
+                            }
+                        }
+                        else
+                        {
+                            label2.Text = "Die Musik ist angeschaltet!";
+                            button1.Enabled = true;
+                            button2.Enabled = false;
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Error #006");
+                    }
+                }
+                else
+                {
+                    if (line4 == "alreadydefined")
+                    {
+                        try
+                        {
+                            if (File.Exists(line5 + @"\miles\\mssmp3.asi"))
+                            {
+                                label2.Text = "Die Musik ist angeschaltet!";
+                                button1.Enabled = false;
+                                button2.Enabled = true;
+                            }
+                            else
+                            {
+                                label2.Text = "Die Musik ist angeschaltet!";
+                                button1.Enabled = true;
+                                button2.Enabled = false;
+                            }
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Error #019");
+                        }
                     }
                     else
                     {
-                        label2.Text = "Die Musik ist aktuell aus!";
-                        button1.Enabled = true;
-                        button2.Enabled = false;
+                        MessageBox.Show("Error #016");
                     }
-                }
-                catch
-                {
-                    label2.Text = "Error #002";
                 }
             }
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            bool systembitstatus = false;
-            //false bedeutet System ist 32 bit true es ist 64 bit
-
-            if (File.Exists(@"C:\Program Files\Steam\SteamApps\common\call of duty modern warfare 3\miles\milesEQ.flt"))
-            //Es wird gekuckt ,ob das Betriebssystem 32 bit ist
-            {
-                systembitstatus = false;
-            }
-            else
-            {
-                if (File.Exists(@"C:\Program Files (x86)\Steam\SteamApps\common\call of duty modern warfare 3\miles\milesEQ.flt"))
-                {
-                    systembitstatus = true;
-
-                }
-            }
-            if (systembitstatus == false)
+            string line0 = "0", line1 = "1";
+            System.IO.StreamReader toolfile =
+            new System.IO.StreamReader(Application.UserAppDataPath + @"\MW3-Tool.txt");
+            line0 = toolfile.ReadLine();
+            line1 = toolfile.ReadLine();
+            toolfile.Close();
+            if (line0 == "32bit")
             {
                 try
                 {
@@ -124,112 +293,144 @@ namespace WindowsFormsApplication1
                     {
                         File.Copy(@"C:\Program Files\Steam\SteamApps\common\call of duty modern warfare 3\miles\mssmp3.bak", @"C:\Program Files\Steam\SteamApps\common\call of duty modern warfare 3\miles\mssmp3.asi");
                         File.Delete(@"C:\Program Files\Steam\SteamApps\common\call of duty modern warfare 3\miles\mssmp3.bak");
-                        label2.Text = "Die Musik wurde erfolgreich aktiviert!";
+                        label2.Text = "Die Musik ist angeschaltet!";
                         button1.Enabled = false;
                         button2.Enabled = true;
                     }
                     else
                     {
-                        label2.Text = "Error #003";
+                        MessageBox.Show("Error #007");
                     }
                 }
                 catch
                 {
-                    label2.Text = "Error #004";
+                    MessageBox.Show("Error #008");
                 }
             }
             else
             {
-                try
+                if (line0 == "64bit")
                 {
-                    if (File.Exists(@"C:\Program Files (x86)\Steam\SteamApps\common\call of duty modern warfare 3\miles\mssmp3.bak"))
+                    try
                     {
-                        File.Copy(@"C:\Program Files (x86)\Steam\SteamApps\common\call of duty modern warfare 3\miles\mssmp3.bak", @"C:\Program Files (x86)\Steam\SteamApps\common\call of duty modern warfare 3\miles\mssmp3.asi");
-                        File.Delete(@"C:\Program Files (x86)\Steam\SteamApps\common\call of duty modern warfare 3\miles\mssmp3.bak");
-                        label2.Text = "Die Musik wurde erfolgreich aktiviert!";
-                        button1.Enabled = false;
-                        button2.Enabled = true;
+                        if (File.Exists(@"C:\Program Files (x86)\Steam\SteamApps\common\call of duty modern warfare 3\miles\mssmp3.bak"))
+                        {
+                            File.Copy(@"C:\Program Files (x86)\Steam\SteamApps\common\call of duty modern warfare 3\miles\mssmp3.bak", @"C:\Program Files (x86)\Steam\SteamApps\common\call of duty modern warfare 3\miles\mssmp3.asi");
+                            File.Delete(@"C:\Program Files (x86)\Steam\SteamApps\common\call of duty modern warfare 3\miles\mssmp3.bak");
+                            label2.Text = "Die Musik ist angeschaltet!";
+                            button1.Enabled = false;
+                            button2.Enabled = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error #009 'Try by startyng the application as admin!'");
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Error #010");
+                    }
+                }
+                else
+                {
+                    if (line0 == "alreadydefined")
+                    {
+                        if (File.Exists(line1 + "/miles/mssmp3.bak"))
+                        {
+                            File.Copy(line1 + @"\miles\mssmp3.bak", line1 + @"\miles\mssmp3.asi");
+                            File.Delete(line1 + @"\miles\mssmp3.bak");
+                            label2.Text = "Die Musik ist angeschaltet!";
+                            button1.Enabled = false;
+                            button2.Enabled = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error #011");
+                        }
                     }
                     else
                     {
-                        label2.Text = "Error #005";
+                        MessageBox.Show("Error #012");
                     }
-                }
-                catch
-                {
-                    label2.Text = "Error #006";
                 }
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            bool systembitstatus = false;
-            //false bedeutet System ist 32 bit true es ist 64 bit
-
-            if (File.Exists(@"C:\Program Files\Steam\SteamApps\common\call of duty modern warfare 3\miles\milesEQ.flt"))
-            //Es wird gekuckt ,ob das Betriebssystem 32 bit ist
-            {
-                systembitstatus = false;
-            }
-            else
-            {
-                if (File.Exists(@"C:\Program Files (x86)\Steam\SteamApps\common\call of duty modern warfare 3\miles\milesEQ.flt"))
-                {
-                    systembitstatus = true;
-
-                }
-            }
-            if (systembitstatus == false)
+            string line0 = "0", line1 = "1";
+            System.IO.StreamReader toolfile =
+            new System.IO.StreamReader(Application.UserAppDataPath + @"\MW3-Tool.txt");
+            line0 = toolfile.ReadLine();
+            line1 = toolfile.ReadLine();
+            toolfile.Close();
+            if (line0 == "32bit")
             {
                 try
                 {
                     if (File.Exists(@"C:\Program Files\Steam\SteamApps\common\call of duty modern warfare 3\miles\mssmp3.asi"))
                     {
-                        try
-                        {
-                            File.Copy(@"C:\Program Files\Steam\SteamApps\common\call of duty modern warfare 3\miles\mssmp3.asi", @"C:\Program Files\Steam\SteamApps\common\call of duty modern warfare 3\miles\mssmp3.bak");
-                            File.Delete(@"C:\Program Files\Steam\SteamApps\common\call of duty modern warfare 3\miles\mssmp3.asi");
-                        }
-                        catch { label2.Text = "Error #012"; }
-                        label2.Text = "Die Musik wurde erfolgreich deaktiviert!";
+                        File.Copy(@"C:\Program Files\Steam\SteamApps\common\call of duty modern warfare 3\miles\mssmp3.asi", @"C:\Program Files\Steam\SteamApps\common\call of duty modern warfare 3\miles\mssmp3.bak");
+                        File.Delete(@"C:\Program Files\Steam\SteamApps\common\call of duty modern warfare 3\miles\mssmp3.asi");
+                        label2.Text = "Die Musik ist angeschaltet!";
                         button1.Enabled = true;
                         button2.Enabled = false;
                     }
                     else
                     {
-                        label2.Text = "Error #007";
+                        MessageBox.Show("Error #013");
                     }
                 }
                 catch
                 {
-                    label2.Text = "Error #008";
+                    MessageBox.Show("Error #014");
                 }
             }
             else
             {
-                try
+                if (line0 == "64bit")
                 {
-                    if (File.Exists(@"C:\Program Files (x86)\Steam\SteamApps\common\call of duty modern warfare 3\miles\mssmp3.asi"))
+                    try
                     {
-                        try
+                        if (File.Exists(@"C:\Program Files (x86)\Steam\SteamApps\common\call of duty modern warfare 3\miles\mssmp3.asi"))
                         {
                             File.Copy(@"C:\Program Files (x86)\Steam\SteamApps\common\call of duty modern warfare 3\miles\mssmp3.asi", @"C:\Program Files (x86)\Steam\SteamApps\common\call of duty modern warfare 3\miles\mssmp3.bak");
                             File.Delete(@"C:\Program Files (x86)\Steam\SteamApps\common\call of duty modern warfare 3\miles\mssmp3.asi");
+                            label2.Text = "Die Musik ist angeschaltet!";
+                            button1.Enabled = true;
+                            button2.Enabled = false;
                         }
-                        catch { label2.Text = "Error #013"; }
-                        label2.Text = "Die Musik wurde erfolgreich deaktiviert!";
-                        button1.Enabled = true;
-                        button2.Enabled = false;
+                        else
+                        {
+                            MessageBox.Show("Error #015");
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Error #016");
+                    }
+                }
+                else
+                {
+                    if (line0 == "alreadydefined")
+                    {
+                        if (File.Exists(line1 + "/miles/mssmp3.asi"))
+                        {
+                            File.Copy(line1 + @"\miles\mssmp3.asi", line1 + @"\miles\mssmp3.bak");
+                            File.Delete(line1 + @"\miles\mssmp3.asi");
+                            label2.Text = "Die Musik ist angeschaltet!";
+                            button1.Enabled = true;
+                            button2.Enabled = false;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error #017");
+                        }
                     }
                     else
                     {
-                        label2.Text = "Error #009";
+                        MessageBox.Show("Error #018");
                     }
-                }
-                catch
-                {
-                    label2.Text = "Error #010";
                 }
             }
         }
